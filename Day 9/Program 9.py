@@ -1,12 +1,13 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        if n == 1:
-            return 1
-        if n == 2:
-            return 2
-        else:
-            return self.climbStairs(n - 1) + self.climbStairs(n - 2)
-
+        def climb(n):  # inner function to make code simpler
+            if n in memo:
+                return memo[n]
+            else:
+                memo[n] = climb(n-1) + climb(n-2)
+                return memo[n]
+        memo = {1: 1, 2: 2}  # base cases
+        return climb(n)
 
 
 
